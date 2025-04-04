@@ -5,10 +5,10 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: git@github.com:edudip/ephemeral.git
+      repoURL: ephemeralenv
       revision: main
       directories:
-      - path: "environments/deployments/*"
+      - path: "deployments/*"
         exclude: true
   template:
     metadata:
@@ -18,13 +18,13 @@ spec:
       source:
         repoURL: git@github.com:edudip/ephemeralenv.git
         targetRevision: main
-        path: "environments/chart"
+        path: "vcluster"
         helm:
           valueFiles:
           - "../{{ path.basename }}/values.yaml"
       destination:
-        name: 'in-cluster'
-        namespace: argo
+        server: https://kubernetes.default.svc
+        namespace: {{path.basename}}
       syncPolicy:
         automated:
           selfHeal: true
