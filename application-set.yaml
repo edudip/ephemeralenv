@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: staging-environments
+spec:
+  generators:
+  - git:
+      repoURL: git@github.com:edudip/ephemeral.git
+      revision: main
+      directories:
+      - path: "environments/deployments/*"
+        exclude: true
+  template:
+    metadata:
+      name: '{{path.basename}}-stack'
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:edudip/ephemeral.git
+        targetRevision: main
+        path: "environments/chart"
+        helm:
+          valueFiles:
+          - "../{{ path.basename }}/values.yaml"
+      destination:
+        name: 'in-cluster'
+        namespace: argo
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+          # security measurement
+          allowEmpty: false
