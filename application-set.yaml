@@ -5,11 +5,10 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: ephemeralenv
+      repoURL: git@github.com:edudip/ephemeralenv.git
       revision: main
       directories:
       - path: "deployments/*"
-        exclude: true
   template:
     metadata:
       name: '{{path.basename}}-cluster'
@@ -21,10 +20,10 @@ spec:
         path: "vcluster"
         helm:
           valueFiles:
-          - "../{{ path.basename }}/values.yaml"
+          - "../deployments/{{ path.basename }}/values.yaml"
       destination:
         server: https://kubernetes.default.svc
-        namespace: {{path.basename}}
+        namespace: staging-clusters
       syncPolicy:
         automated:
           selfHeal: true
