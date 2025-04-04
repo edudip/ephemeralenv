@@ -12,11 +12,11 @@ spec:
         exclude: true
   template:
     metadata:
-      name: '{{path.basename}}-stack'
+      name: '{{path.basename}}-cluster'
     spec:
       project: default
       source:
-        repoURL: git@github.com:edudip/ephemeral.git
+        repoURL: git@github.com:edudip/ephemeralenv.git
         targetRevision: main
         path: "environments/chart"
         helm:
