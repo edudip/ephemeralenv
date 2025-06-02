@@ -1,0 +1,6 @@
+dependencies:
+- name: api
+  repository: oci://harbor.infra.edudip.dev/charts
+  version: 2.99.3-dev
+digest: sha256:0a263b7851ea1b83ef642c9fb0de6a4816de4d1f9187099a90ca06b629663cca
+generated: "2025-06-02T15:47:55.148044+02:00"
