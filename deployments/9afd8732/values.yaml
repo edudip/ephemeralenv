@@ -977,7 +977,8 @@ vcluster:
     # Deprecated: Use AdditionalSecrets instead.
     secret:
       # Name is the name of the secret where the kubeconfig should get stored.
-      name: "vcci-$COMMIT_HASH"
+      #TEMPLATE_ME
+      name: "vcci-9afd8732"
       # Namespace where vCluster should store the kubeconfig secret. If this is not equal to the namespace
       # where you deployed vCluster, you need to make sure vCluster has access to this other namespace.
       namespace: ""
