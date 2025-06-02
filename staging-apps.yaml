@@ -33,7 +33,7 @@ spec:
       source:
         repoURL: git@github.com:edudip/ephemeralenv.git
         targetRevision: main
-        path: "deployments/{{path.basename}}/{{app}}"
+        path: "deployments/{{path.basename}}/apps/{{app}}/"
       destination:
         server: 'https://cluster-{{ path.basename }}.vcluster-{{ path.basename }}'
         namespace: 'next-apps-{{ path.basename }}'
