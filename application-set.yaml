@@ -11,7 +11,7 @@ spec:
       - path: "deployments/*"
   template:
     metadata:
-      name: 'cluster-{{path.basename}}'
+      name: 'vcluster-{{path.basename}}'
     spec:
       project: default
       source:
@@ -23,7 +23,7 @@ spec:
           - "../deployments/{{ path.basename }}/values.yaml"
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{ path.basename }}'
+        namespace: 'vcluster-{{ path.basename }}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true

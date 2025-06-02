@@ -4,10 +4,16 @@ metadata:
   name: nextapps-staging
 spec:
   generators:
-  - list:
-      elements:
-      - srv: nextapps
-        path: next
+    - matrix:
+        generators:
+          - git:
+              repoURL: git@github.com:edudip/ephemeralenv.git
+              revision: main
+              directories:
+              - path: "deployments/*"
+          - list:
+              elements:
+              - app: next
   strategy:
     type: RollingSync
     rollingSync:
@@ -16,23 +22,20 @@ spec:
             - key: staging-components
               operator: In
               values:
-                - nextapps
+                - next
   template:
     metadata:
       name: 'vcluster-{{path.basename}}-apps'
       labels:
-        staging-components: '{{srv}}'
+        staging-components: '{{app}}'
     spec:
       project: default
       source:
         repoURL: git@github.com:edudip/ephemeralenv.git
         targetRevision: main
-        path: "vcluster"
-        helm:
-          valueFiles:
-          - "../deployments/{{ path.basename }}/values.yaml"
+        path: "deployments/{{path.basename}}/{{app}}"
       destination:
-        server: https://cluster-{{ path.basename }}.vcluster-{{ path.basename }}
+        server: 'https://cluster-{{ path.basename }}.vcluster-{{ path.basename }}'
         namespace: 'next-apps-{{ path.basename }}'
       syncPolicy:
         syncOptions:
