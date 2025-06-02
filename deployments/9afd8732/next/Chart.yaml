@@ -1,0 +1,18 @@
+apiVersion: v2
+name: staging-helm-chart
+description: A Helm chart to deploy our staging-environment applications
+appVersion: "1.16.0"
+
+dependencies:
+  - name: api
+    version: "2.99.3"
+    repository: "https://harbor.infra.edudip.dev"
+  - name: sharedobjects
+    version: "2.18.0"
+    repository: "https://harbor.infra.edudip.dev"
+  - name: sharedobjects-edge
+    version: "2.5.0"
+    repository: "https://harbor.infra.edudip.dev"
+  - name: room
+    version: "0.56.4"
+    repository: "https://harbor.infra.edudip.dev"

@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nextapps-staging
+spec:
+  generators:
+  - list:
+      elements:
+      - srv: nextapps
+        path: next
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: staging-components
+              operator: In
+              values:
+                - nextapps
+  template:
+    metadata:
+      name: 'vcluster-{{path.basename}}-apps'
+      labels:
+        staging-components: '{{srv}}'
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:edudip/ephemeralenv.git
+        targetRevision: main
+        path: "vcluster"
+        helm:
+          valueFiles:
+          - "../deployments/{{ path.basename }}/values.yaml"
+      destination:
+        server: https://cluster-{{ path.basename }}.vcluster-{{ path.basename }}
+        namespace: 'next-apps-{{ path.basename }}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        automated:
+          selfHeal: true
+          prune: true
+          # security measurement
+          allowEmpty: false
