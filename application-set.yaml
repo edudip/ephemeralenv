@@ -23,7 +23,7 @@ spec:
           - "../deployments/{{ path.basename }}/values.yaml"
       destination:
         server: https://kubernetes.default.svc
-        namespace: staging-clusters
+        namespace: '{{ path.basename }}'
       syncPolicy:
         automated:
           selfHeal: true
