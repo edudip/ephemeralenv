@@ -13,6 +13,7 @@ spec:
               - path: "deployments/*"
           - list:
               elements:
+              - app: service-dependencies
               - app: next
   strategy:
     type: RollingSync
