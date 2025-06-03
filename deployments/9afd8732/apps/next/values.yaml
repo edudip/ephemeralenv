@@ -1,5 +1,16 @@
 api:
   api:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 1Gi
+      limits:
+        cpu: 1
+        memory: 2Gi
     metrics:
       serviceMonitor:
         enabled: false
+    sentryRelay:
+      enabled: false
+    redis:
+      enabled: true

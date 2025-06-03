@@ -1,0 +1,11 @@
+apiVersion: v2
+name: staging-base-cluster-helm-chart
+description: A Helm chart to deploy our staging-environment base-cluster-services
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+
+dependencies:
+  - name: api
+    version: "2.99.3-dev"
+    repository: oci://harbor.infra.edudip.dev/charts

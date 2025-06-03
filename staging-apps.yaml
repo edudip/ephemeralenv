@@ -19,6 +19,19 @@ spec:
     rollingSync:
       steps:
         - matchExpressions:
+        # longhorn etc.
+            - key: staging-components
+              operator: In
+              values:
+                - base-cluster
+        - matchExpressions:
+        # database, cache etc.
+            - key: staging-components
+              operator: In
+              values:
+                - service-dependencies
+        # our applications
+        - matchExpressions:
             - key: staging-components
               operator: In
               values:
