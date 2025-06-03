@@ -10,10 +10,6 @@ api:
     metrics:
       serviceMonitor:
         enabled: false
-  sentryRelay:
-    enabled: false
-  redis:
-    enabled: true
     db:
       mysql:
         host: 127.0.0.1
@@ -174,3 +170,8 @@ api:
         senderAddress: noreply@service.edudip.com
         senderAddressFallback: noreply@edudip.com
       queueSize: 25
+
+  sentryRelay:
+    enabled: false
+  redis:
+    enabled: true
