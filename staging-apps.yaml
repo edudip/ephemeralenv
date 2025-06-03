@@ -39,7 +39,7 @@ spec:
                 - next
   template:
     metadata:
-      name: 'vcluster-{{app}}-apps'
+      name: 'vcluster-{{path.basename}}-{{app}}-apps'
       labels:
         staging-components: '{{app}}'
     spec:
