@@ -19,12 +19,12 @@ spec:
     type: RollingSync
     rollingSync:
       steps:
-        - matchExpressions:
-        # longhorn etc.
-            - key: staging-components
-              operator: In
-              values:
-                - base-cluster
+        # - matchExpressions:
+        # # longhorn etc.
+        #     - key: staging-components
+        #       operator: In
+        #       values:
+        #         - base-cluster
         - matchExpressions:
         # database, cache etc.
             - key: staging-components
@@ -39,7 +39,7 @@ spec:
                 - next
   template:
     metadata:
-      name: 'vcluster-{{path.basename}}-apps'
+      name: 'vcluster-{{app}}-apps'
       labels:
         staging-components: '{{app}}'
     spec:
