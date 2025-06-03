@@ -1,2 +1,3 @@
-api:
-  something: {}
+pxc-operator:
+  watchAllNamespaces: true
+  disableTelemetry: true
