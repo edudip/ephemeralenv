@@ -838,9 +838,13 @@ vcluster:
       # are required.
       toHost: []
       # FromHost defines the services that should get synced from the host to the virtual cluster.
-      fromHost: 
-        - vault-secrets-operator/c-dev-v3-vault-secrets-operator",
-        
+      fromHost: [
+        {
+          # Name is the name of the service to sync.
+          from: "vault-secrets-operator/c-dev-v3-vault-secrets-operator",
+          to: "vault-secrets-operator/vcluster-vault-secrets-operator",
+        },
+      ]
     
     # ResolveDNS allows to define extra DNS rules. This only works if embedded coredns is configured.
     resolveDNS: []
