@@ -176,7 +176,7 @@ vcluster:
         # Mappings for Namespace and Object
         mappings:
           byName:
-            "next9afd8732/*": "api/*"
+            "api/*": "api/*"
           # ByName is a map of host-object-namespace/host-object-name: virtual-object-namespace/virtual-object-name.
           # There are several wildcards supported:
           # 1. To match all objects in host namespace and sync them to different namespace in vCluster:
