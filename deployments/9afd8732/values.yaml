@@ -175,7 +175,7 @@ vcluster:
         enabled: true
         # Mappings for Namespace and Object
         mappings: 
-          byName:
+          byName: 
             "api/*": "api/api-secrets"
       # VolumeSnapshotClasses defines if volume snapshot classes created within the virtual cluster should get synced to the host cluster.
       volumeSnapshotClasses:
