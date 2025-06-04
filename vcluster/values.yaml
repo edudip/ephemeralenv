@@ -177,7 +177,7 @@ vcluster:
         mappings: 
         # TODO: SET CORRECT NAMESPACE
           byName:
-            "api/api-secrets": "next-$DEPLOYMENT_COMMIT_HASH_NAMESPACE/api-secrets"
+            "api/api-secrets": "$DEPLOYMENT_COMMIT_HASH_NAMESPACE-next/api-secrets"
           # ByName is a map of host-object-namespace/host-object-name: virtual-object-namespace/virtual-object-name.
           # There are several wildcards supported:
           # 1. To match all objects in host namespace and sync them to different namespace in vCluster:

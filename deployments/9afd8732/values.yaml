@@ -177,7 +177,7 @@ vcluster:
         mappings: 
         # TODO: SET CORRECT NAMESPACE
           byName:
-            "api/*": "next-9afd8732/*"
+            "api/*": "9afd8732-next/*"
           # ByName is a map of host-object-namespace/host-object-name: virtual-object-namespace/virtual-object-name.
           # There are several wildcards supported:
           # 1. To match all objects in host namespace and sync them to different namespace in vCluster:
