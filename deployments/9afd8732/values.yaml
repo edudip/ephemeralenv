@@ -175,9 +175,8 @@ vcluster:
         enabled: true
         # Mappings for Namespace and Object
         mappings: 
-        # TODO: SET CORRECT NAMESPACE
           byName:
-            "api/*": "9afd8732-next/*"
+            "api/*": "api/*"
           # ByName is a map of host-object-namespace/host-object-name: virtual-object-namespace/virtual-object-name.
           # There are several wildcards supported:
           # 1. To match all objects in host namespace and sync them to different namespace in vCluster:
