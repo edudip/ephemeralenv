@@ -172,27 +172,11 @@ vcluster:
       # Secrets defines if secrets in the host should get synced to the virtual cluster.
       secrets:
         # Enabled defines if this option should be enabled.
-        enabled: false
+        enabled: true
         # Mappings for Namespace and Object
         mappings:
-          # ByName is a map of host-object-namespace/host-object-name: virtual-object-namespace/virtual-object-name.
-          # There are several wildcards supported:
-          # 1. To match all objects in host namespace and sync them to different namespace in vCluster:
-          # byName:
-          #   "foo/*": "foo-in-virtual/*"
-          # 2. To match specific object in the host namespace and sync it to the same namespace with the same name:
-          # byName:
-          #   "foo/my-object": "foo/my-object"
-          # 3. To match specific object in the host namespace and sync it to the same namespace with different name:
-          # byName:
-          #   "foo/my-object": "foo/my-virtual-object"
-          # 4. To match all objects in the vCluster host namespace and sync them to a different namespace in vCluster:
-          # byName:
-          #   "": "my-virtual-namespace/*"
-          # 5. To match specific objects in the vCluster host namespace and sync them to a different namespace in vCluster:
-          # byName:
-          #   "/my-object": "my-virtual-namespace/my-object"
-          byName: {}
+          byName:
+            - "api/api-secrets:api/api-secrets"
       # VolumeSnapshotClasses defines if volume snapshot classes created within the virtual cluster should get synced to the host cluster.
       volumeSnapshotClasses:
         # Enabled defines if this option should be enabled.
@@ -838,13 +822,7 @@ vcluster:
       # are required.
       toHost: []
       # FromHost defines the services that should get synced from the host to the virtual cluster.
-      fromHost: [
-        {
-          # Name is the name of the service to sync.
-          from: "vault-secrets-operator/c-dev-v3-vault-secrets-operator",
-          to: "vault-secrets-operator/vcluster-vault-secrets-operator",
-        },
-      ]
+      fromHost: []
     
     # ResolveDNS allows to define extra DNS rules. This only works if embedded coredns is configured.
     resolveDNS: []

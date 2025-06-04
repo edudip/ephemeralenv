@@ -838,6 +838,7 @@ vcluster:
       # are required.
       toHost: []
       # FromHost defines the services that should get synced from the host to the virtual cluster.
+      # {from:"namespace/service",to:"namespace/service"}
       fromHost: []
     
     # ResolveDNS allows to define extra DNS rules. This only works if embedded coredns is configured.
