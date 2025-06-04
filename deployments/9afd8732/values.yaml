@@ -176,24 +176,7 @@ vcluster:
         # Mappings for Namespace and Object
         mappings: 
           byName:
-            "api/*": "api/*"
-          # ByName is a map of host-object-namespace/host-object-name: virtual-object-namespace/virtual-object-name.
-          # There are several wildcards supported:
-          # 1. To match all objects in host namespace and sync them to different namespace in vCluster:
-          # byName:
-          #   "api/*": "foo-in-virtual/*"
-          # 2. To match specific object in the host namespace and sync it to the same namespace with the same name:
-          # byName:
-          #   "foo/my-object": "foo/my-object"
-          # 3. To match specific object in the host namespace and sync it to the same namespace with different name:
-          # byName:
-          #   "foo/my-object": "foo/my-virtual-object"
-          # 4. To match all objects in the vCluster host namespace and sync them to a different namespace in vCluster:
-          # byName:
-          #   "": "my-virtual-namespace/*"
-          # 5. To match specific objects in the vCluster host namespace and sync them to a different namespace in vCluster:
-          # byName:
-          #   "/my-object": "my-virtual-namespace/my-object"
+            "api/*": "api/api-secrets"
       # VolumeSnapshotClasses defines if volume snapshot classes created within the virtual cluster should get synced to the host cluster.
       volumeSnapshotClasses:
         # Enabled defines if this option should be enabled.
