@@ -367,7 +367,7 @@ vcluster:
         # Deploy defines to use an external etcd that is deployed by the helm chart
         deploy:
           # Enabled defines that an external etcd should be deployed.
-          enabled: true
+          enabled: false
           # StatefulSet holds options for the external etcd statefulSet.
           statefulSet:
             # Enabled defines if the statefulSet should be deployed
