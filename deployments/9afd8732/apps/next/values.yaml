@@ -66,10 +66,11 @@ api:
       db:
         mysql:
           host: api-mysql-cluster-haproxy-replicas
-          port: 3306
-          name: ''
-          user: ''
+          port: 3306          
+          name: edudip_next
+          user: edudip
           password: ''
+          
 
         mysqlSlave:
           host: 127.0.0.1

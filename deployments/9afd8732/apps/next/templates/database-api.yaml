@@ -1,14 +1,3 @@
-# 1. Secret for the initial user's password
-# Save this as initial-user-secret.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: initial-user-secret # This name will be referenced in the PerconaXtraDBCluster CR
-  namespace: next-apps-9afd8732 # Replace with the namespace where your cluster will be deployed
-type: Opaque
-stringData:
-  password: "YourStrongPassword123!"
----
 apiVersion: pxc.percona.com/v1
 kind: PerconaXtraDBCluster
 metadata:
@@ -77,8 +66,8 @@ spec:
       withGrantOption: true
       # Reference to the Kubernetes Secret containing the password for this user.
       passwordSecretRef:
-        name: initial-user-secret # Must match the metadata.name of the Secret above
-        key: password # Must match the key in stringData of the Secret
+        name: api-secrets # Must match the metadata.name of the Secret above
+        key: db.mysql.password # Must match the key in stringData of the Secret
       # Grants for the user on the specified databases.
       # Example: ALL PRIVILEGES on 'initial_db'.*
       # You can be more specific with grants like ['SELECT', 'INSERT', 'UPDATE']
