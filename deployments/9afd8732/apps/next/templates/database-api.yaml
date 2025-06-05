@@ -46,8 +46,6 @@ spec:
         resources:
           requests:
             storage: 50G
-    affinity:
-      antiAffinityTopologyKey: "kubernetes.io/hostname"
   pmm:
     enabled: false
     image: percona/pmm-client:2.44.0
