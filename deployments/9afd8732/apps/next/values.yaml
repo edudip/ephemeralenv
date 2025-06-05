@@ -72,7 +72,7 @@ api:
 
         redis:
           driver: redis-sentinel
-          host: 127.0.0.1
+          host: api-redis
           password: ''
           port: 6379
           db: 0
