@@ -233,12 +233,3 @@ api:
         requests:
           memory: 100Mi
           cpu: 100m
-
-  redis-exporter:
-    enabled: false
-    redis:
-      address: api-redis
-      password:
-        secret: api-redis
-        key: auth
-      checkKeys: "db0=queues:*"
