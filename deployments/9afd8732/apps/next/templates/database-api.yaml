@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: initial-user-secret # This name will be referenced in the PerconaXtraDBCluster CR
-  namespace: your-namespace # Replace with the namespace where your cluster will be deployed
+  namespace: next-apps-9afd8732 # Replace with the namespace where your cluster will be deployed
 type: Opaque
 stringData:
   password: "YourStrongPassword123!"
