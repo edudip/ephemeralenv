@@ -13,6 +13,14 @@ api:
     metrics:
       serviceMonitor:
         enabled: false
+    jobs:
+      translate:
+        enabled: false
+      migrate:
+        enabled: true
+      seed:
+        enabled: true
+
     configuration:
         # You manually need to create a secret with all of these values!
       secretName: api-secrets
