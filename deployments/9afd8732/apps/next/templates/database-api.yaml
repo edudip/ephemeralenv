@@ -22,6 +22,9 @@ spec:
     annotations:
       sidecar.istio.io/inject: "false"
     resources:
+      requests:
+        memory: 128M
+        cpu: "500m"
       limits:
         memory: 2G
         cpu: "1"
