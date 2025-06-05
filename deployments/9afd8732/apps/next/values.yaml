@@ -55,33 +55,33 @@ api:
         sso.google.clientSecret: 'GOOGLE_CLIENT_SECRET'
         sms.sevenIOApiKey: 'SEVENIO_API_KEY'
         storage.hetznerS3.secretKey: 'HETZNER_S3_SECRET_ACCESS_KEY'
-      db:
-        mysql:
-          host: 127.0.0.1
-          port: 3306
-          name: ''
-          user: ''
-          password: ''
+    db:
+      mysql:
+        host: 127.0.0.1
+        port: 3306
+        name: ''
+        user: ''
+        password: ''
 
-        mysqlSlave:
-          host: 127.0.0.1
-          port: 3306
-          name: ''
-          user: ''
-          password: ''
+      mysqlSlave:
+        host: 127.0.0.1
+        port: 3306
+        name: ''
+        user: ''
+        password: ''
 
-        redis:
-          driver: redis-sentinel
-          host: api-redis
-          password: ''
-          port: 6379
-          db: 0
-          cacheDb: 1
-          queueDb: 2
-          prometheusDb: 0
-          sentinel:
-            enabled: false
-            service: mymaster
+      redis:
+        driver: redis-sentinel
+        host: api-redis
+        password: ''
+        port: 6379
+        db: 0
+        cacheDb: 1
+        queueDb: 2
+        prometheusDb: 0
+        sentinel:
+          enabled: false
+          service: mymaster
 
       prometheus:
         namespace: api
