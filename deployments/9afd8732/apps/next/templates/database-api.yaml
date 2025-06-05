@@ -74,7 +74,7 @@ spec:
         - SELECT
         - DELETE
         - INSERT
-        withGrantOption: true
+      withGrantOption: true
       # Reference to the Kubernetes Secret containing the password for this user.
       passwordSecretRef:
         name: initial-user-secret # Must match the metadata.name of the Secret above
@@ -82,7 +82,6 @@ spec:
       # Grants for the user on the specified databases.
       # Example: ALL PRIVILEGES on 'initial_db'.*
       # You can be more specific with grants like ['SELECT', 'INSERT', 'UPDATE']
-
 
   pmm:
     enabled: false
