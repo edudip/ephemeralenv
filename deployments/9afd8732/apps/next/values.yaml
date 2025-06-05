@@ -57,7 +57,7 @@ api:
         storage.hetznerS3.secretKey: 'HETZNER_S3_SECRET_ACCESS_KEY'
     db:
       mysql:
-        host: 127.0.0.1
+        host: api-mysql-cluster-haproxy-replicas
         port: 3306
         name: ''
         user: ''
