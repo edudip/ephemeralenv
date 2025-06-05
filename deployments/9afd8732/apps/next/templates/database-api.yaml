@@ -19,8 +19,6 @@ spec:
     size: 2
     image: percona/percona-xtradb-cluster:8.0.39-30.1
     autoRecovery: true
-    nodeSelector:
-      edudip.com/node-type: db-spread
     annotations:
       sidecar.istio.io/inject: "false"
     resources:
