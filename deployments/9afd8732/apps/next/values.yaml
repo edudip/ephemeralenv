@@ -80,7 +80,7 @@ api:
           queueDb: 2
           prometheusDb: 0
           sentinel:
-            enabled: false
+            enabled: true
             service: mymaster
 
         prometheus:
@@ -220,14 +220,14 @@ api:
     enabled: false
 
   redis:
+    useHostnames: false
+    enabled: true
     metrics:
         enabled: false
         serviceMonitor:
           enabled: true
         prometheusRule:
           enabled: false
-    useHostnames: false
-    enabled: true
     auth:
       existingSecret: api-redis
     master:
