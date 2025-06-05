@@ -256,7 +256,7 @@ vcluster:
       # [Deprecated] K3S holds K3s relevant configuration.
       k3s:
         # Enabled specifies if the K3s distro should be enabled. Only one distro can be enabled at the same time.
-        enabled: false
+        enabled: true
         # Command is the command to start the distro binary. This will override the existing command.
         command: []
         # ExtraArgs are additional arguments to pass to the distro binary.
