@@ -218,7 +218,14 @@ api:
 
   sentryRelay:
     enabled: false
+
   redis:
+    metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+        prometheusRule:
+          enabled: false
     useHostnames: false
     enabled: true
     auth:
