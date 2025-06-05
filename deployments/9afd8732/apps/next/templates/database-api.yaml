@@ -56,8 +56,9 @@ spec:
         cpu: 300m
   haproxy:
     enabled: true
-    unsafeFlags:
-      proxySize: true
+    spec:
+      unsafeFlags:
+        proxySize: true
     size: 1
     image: percona/percona-xtradb-cluster-operator:1.14.0-haproxy
     serviceType: NodePort
