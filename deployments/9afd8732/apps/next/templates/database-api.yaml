@@ -1,3 +1,14 @@
+# 1. Secret for the initial user's password
+# Save this as initial-user-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: initial-user-secret # This name will be referenced in the PerconaXtraDBCluster CR
+  namespace: your-namespace # Replace with the namespace where your cluster will be deployed
+type: Opaque
+stringData:
+  password: "YourStrongPassword123!"
+---
 apiVersion: pxc.percona.com/v1
 kind: PerconaXtraDBCluster
 metadata:
@@ -6,8 +17,6 @@ metadata:
     - delete-pxc-pods-in-order
     - delete-ssl
 #   - delete-pxc-pvc
-stringData:
-  password: "YourStrongPassword123!" # Replace with a strong password
 spec:
   crVersion: 1.16.0
   unsafeFlags:
