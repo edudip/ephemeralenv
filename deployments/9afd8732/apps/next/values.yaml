@@ -1,4 +1,7 @@
 api:
+  apiGlobals:
+    imagePullSecrets:
+      - name: harbor-pull
   api:
     resources:
       requests:
