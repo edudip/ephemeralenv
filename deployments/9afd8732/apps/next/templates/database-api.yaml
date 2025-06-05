@@ -8,9 +8,9 @@ metadata:
 #   - delete-pxc-pvc
 spec:
   crVersion: 1.16.0
-  secretsName: api-db
   unsafeFlags:
     pxcSize: true
+    proxySize: true
   allowUnsafeConfigurations: false
   upgradeOptions:
     apply: disabled
@@ -56,9 +56,6 @@ spec:
         cpu: 300m
   haproxy:
     enabled: true
-    spec:
-      unsafeFlags:
-        proxySize: true
     size: 1
     image: percona/percona-xtradb-cluster-operator:1.14.0-haproxy
     serviceType: NodePort
