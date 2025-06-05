@@ -173,6 +173,7 @@ api:
 
   sentryRelay:
     enabled: false
+redis:  
   redis:
     enabled: true
     metrics:
