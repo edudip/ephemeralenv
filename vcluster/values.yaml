@@ -347,7 +347,7 @@ vcluster:
         # Embedded defines to use embedded etcd as a storage backend for the virtual cluster
         embedded:
           # Enabled defines if the embedded etcd should be used.
-          enabled: false
+          enabled: true
           # MigrateFromDeployedEtcd signals that vCluster should migrate from the deployed external etcd to embedded etcd.
           migrateFromDeployedEtcd: false
         # External defines to use a self-hosted external etcd that is not deployed by the helm chart
