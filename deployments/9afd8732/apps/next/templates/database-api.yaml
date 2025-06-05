@@ -22,7 +22,7 @@ spec:
     annotations:
       sidecar.istio.io/inject: "false"
     resources:
-      requests:
+      limits:
         memory: 2G
         cpu: "1"
     configuration: |
@@ -45,7 +45,7 @@ spec:
         storageClassName: local-path
         resources:
           requests:
-            storage: 50G
+            storage: 10G
   pmm:
     enabled: false
     image: percona/pmm-client:2.44.0
