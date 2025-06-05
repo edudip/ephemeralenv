@@ -9,6 +9,8 @@ metadata:
 spec:
   crVersion: 1.16.0
   secretsName: api-db
+  unsafeFlags:
+    pxcSize: true
   allowUnsafeConfigurations: false
   upgradeOptions:
     apply: disabled
