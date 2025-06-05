@@ -10,166 +10,208 @@ api:
     metrics:
       serviceMonitor:
         enabled: false
-    db:
-      mysql:
-        host: 127.0.0.1
-        port: 3306
-        name: ''
-        user: ''
-        password: ''
+    configuration:
+        # You manually need to create a secret with all of these values!
+      secretName: api-secrets
+      secretFields:
+        app.key: 'APP_KEY'
+        db.mysql.password: 'DB_PASSWORD'
+        db.mysqlSlave.password: 'DB_PASSWORD_SLAVE'
+        db.mysqlMarket.password: 'DB_PASSWORD_EDUDIP'
+        db.mysqlPrivacy.password: 'DB_PASSWORD_PRIVACY'
+        db.redis.password: 'REDIS_PASSWORD'
+        storage.s3.accessKey: 'AWS_ACCESS_KEY_ID'
+        storage.s3.secretKey: 'AWS_SECRET_ACCESS_KEY'
+        room.magicAuthKey: 'ROOM_MAGIC_AUTH_KEY'
+        room.routesPassword: 'ROOM_ROUTES_PASSWORD'
+        youtube.apiKey: 'YT_API_KEY'
+        ovh.password: 'OVH_PASSWORD'
+        ovh.tempUrlKey: 'OS_TEMP_URL_KEY'
+        mailing.main.password: 'MAIL_PASSWORD'
+        mailing.fallback.password: 'MAIL_PASSWORD_FALLBACK'
+        mailing.sendinblue.apiKey: 'SENDINBLUE_APIKEY'
+        mailing.sendinblue.partnerKey: 'SENDINBLUE_PARTNER_KEY'
+        billing.stripe.privateKey: 'STRIPE_PRIVATE_KEY'
+        billing.stripe.webhookSecret: 'STRIPE_WEBHOOK_SECRET'
+        apiConverter.apiKey: 'APICONVERTER_API_KEY'
+        misc.landingPageSalt: 'LANDINGPAGE_SALT'
+        photon.token: 'PHOTON_BEARER_TOKEN'
+        sentry.laravelDsn: 'SENTRY_LARAVEL_DSN'
+        avatar.salt: 'GO_AVATAR_SALT'
+        nextcloud.password: 'NEXTCLOUD_WEBDAV_PASSWORD'
+        readiness.user: 'READINESS_USER'
+        readiness.password: 'READINESS_PASSWORD'
+        captcha.secret: 'FRIENDLY_CAPTCHA_SECRET'
+        captcha.siteKey: 'FRIENDLY_CAPTCHA_SITE_KEY'
+        captcha.bypassSecret: 'FRIENDLY_CAPTCHA_BYPASS_SECRET'
+        webhook.privateKeyBase64: 'WEBHOOK_SIGNING_PRIVATE_KEY_BASE64'
+        webhook.publicKeyBase64: 'WEBHOOK_SIGNING_PUBLIC_KEY_BASE64'
+        sso.microsoft.clientId: 'MICROSOFT_CLIENT_ID'
+        sso.microsoft.clientSecret: 'MICROSOFT_CLIENT_SECRET'
+        sso.google.clientId: 'GOOGLE_CLIENT_ID'
+        sso.google.clientSecret: 'GOOGLE_CLIENT_SECRET'
+        sms.sevenIOApiKey: 'SEVENIO_API_KEY'
+        storage.hetznerS3.secretKey: 'HETZNER_S3_SECRET_ACCESS_KEY'
+      db:
+        mysql:
+          host: 127.0.0.1
+          port: 3306
+          name: ''
+          user: ''
+          password: ''
 
-      mysqlSlave:
-        host: 127.0.0.1
-        port: 3306
-        name: ''
-        user: ''
-        password: ''
+        mysqlSlave:
+          host: 127.0.0.1
+          port: 3306
+          name: ''
+          user: ''
+          password: ''
 
-      redis:
+        redis:
+          driver: redis-sentinel
+          host: 127.0.0.1
+          password: ''
+          port: 6379
+          db: 0
+          cacheDb: 1
+          queueDb: 2
+          prometheusDb: 0
+          sentinel:
+            enabled: false
+            service: mymaster
+
+      prometheus:
+        namespace: api
+        metricsRouteEnabled: false
+
+      sso:
+        microsoft:
+          clientId: ""
+          clientSecret: ""
+          redirectUri: "https://api.edudip.dev/auth/microsoft/callback"
+        google:
+          clientId: ""
+          clientSecret: ""
+          redirectUri: "https://api.edudip.dev/auth/google/callback"
+
+      sms:
+        verifyClients: false
+        sevenIOApiKey: ""
+      
+      oidc:
+        redirectUri: "https://api.edudip.dev/auth/oidc/callback"
+
+      nextcloud:
+        webDAVUrl: 'https://nx39312.your-storageshare.de/remote.php/dav/files/webinars/'
+        username: 'webinars'
+        password: ''
+        pathPrefix: 'upcoming-webinars'
+
+      sanctum:
+        statefulDomains: "localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1"
+
+      photon:
+        token: ''
+
+      cache:
         driver: redis-sentinel
-        host: 127.0.0.1
-        password: ''
-        port: 6379
-        db: 0
-        cacheDb: 1
-        queueDb: 2
-        prometheusDb: 0
-        sentinel:
-          enabled: false
-          service: mymaster
+        rateLimiterDriver: redis-sentinel
 
-    prometheus:
-      namespace: api
-      metricsRouteEnabled: false
+      session:
+        driver: redis
+        connection: session-sentinel
+        domain: api.edudip.dev
+        sameSite: none
+        partitioned: true
 
-    sso:
-      microsoft:
-        clientId: ""
-        clientSecret: ""
-        redirectUri: "https://api.edudip.dev/auth/microsoft/callback"
-      google:
-        clientId: ""
-        clientSecret: ""
-        redirectUri: "https://api.edudip.dev/auth/google/callback"
+      queue:
+        connection: sync
 
-    sms:
-      verifyClients: false
-      sevenIOApiKey: ""
-    
-    oidc:
-      redirectUri: "https://api.edudip.dev/auth/oidc/callback"
+      storage:
+        cache: documents-cache
+        avatars: ovh-avatars
+        participants: ovh-avatars-participants
+        webinarLandingpages: ovh-landingpages
+        documents: ovh-documents
+        recordings: ovh-recordings
+        logo: ovh-logos
+        moderatorBadgeLogos: ovh-moderator-badge-logos-s3
+        publicAssets: ovh-public-assets
+        assetLibraryDiskName: hetzner-asset-library-s3
 
-    nextcloud:
-      webDAVUrl: 'https://nx39312.your-storageshare.de/remote.php/dav/files/webinars/'
-      username: 'webinars'
-      password: ''
-      pathPrefix: 'upcoming-webinars'
+        s3:
+          accessKey: ''
+          secretKey: ''
+          region: de
+          buckets:
+            moderatorBadgeLogos: edudip-next-development
+            publicAssets: public-assets
+          url: ''
+          endpoint: https://s3.de.io.cloud.ovh.net/
+          usePathStyleEndpoint: false
 
-    sanctum:
-      statefulDomains: "localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1"
+        hetznerS3:
+          accessKey: ''
+          secretKey: ''
+          region: eu-central
+          endpoint: https://nbg1.your-objectstorage.com
+          buckets:
+            assets: 'ass-lib'
 
-    photon:
-      token: ''
+      room:
+        roomV2Url: https://room.edudip.dev
+        roomV3Url: https://room-react.edudip.dev
+        getActiveRoomsUrl: https://room.edudip.dev/getActiveRooms
+        protonUrl: proton.sharedobjects-dev.svc.cluster.local:50051
+        magicAuthKey: ''
+        routes:
+          username: room
+          password: ''
 
-    cache:
-      driver: redis-sentinel
-      rateLimiterDriver: redis-sentinel
+      youtube:
+        apiKey: ''
 
-    session:
-      driver: redis
-      connection: session-sentinel
-      domain: api.edudip.dev
-      sameSite: none
-      partitioned: true
-
-    queue:
-      connection: sync
-
-    storage:
-      cache: documents-cache
-      avatars: ovh-avatars
-      participants: ovh-avatars-participants
-      webinarLandingpages: ovh-landingpages
-      documents: ovh-documents
-      recordings: ovh-recordings
-      logo: ovh-logos
-      moderatorBadgeLogos: ovh-moderator-badge-logos-s3
-      publicAssets: ovh-public-assets
-      assetLibraryDiskName: hetzner-asset-library-s3
-
-      s3:
-        accessKey: ''
-        secretKey: ''
-        region: de
-        buckets:
-          moderatorBadgeLogos: edudip-next-development
-          publicAssets: public-assets
-        url: ''
-        endpoint: https://s3.de.io.cloud.ovh.net/
-        usePathStyleEndpoint: false
-
-      hetznerS3:
-        accessKey: ''
-        secretKey: ''
-        region: eu-central
-        endpoint: https://nbg1.your-objectstorage.com
-        buckets:
-          assets: 'ass-lib'
-
-    room:
-      roomV2Url: https://room.edudip.dev
-      roomV3Url: https://room-react.edudip.dev
-      getActiveRoomsUrl: https://room.edudip.dev/getActiveRooms
-      protonUrl: proton.sharedobjects-dev.svc.cluster.local:50051
-      magicAuthKey: ''
-      routes:
-        username: room
-        password: ''
-
-    youtube:
-      apiKey: ''
-
-    ovh:
-      username: ''
-      password: ''
-      tenantId: ''
-      tempUrlKey: ''
-      region: DE
-      objectStorageTimeout: 5
-      objectStorageConnectionTimeout: 5
-      containers:
-        avatars: edudip-next-test-from-local
-        avatarsParticipants: edudip-next-test-from-local
-        documents: edudip-next-test-from-local
-        landingpages: edudip-next-test-from-local
-        recordings: edudip-next-test-from-local
-        logos: edudip-next-test-from-local
-        moderatorBadgeLogos: edudip-next-test-from-local
-
-    mailing:
-      enabled: true
-      driver: smtp
-      main:
-        host: mailhog.mailhog.svc.cluster.local
-        port: 1025
+      ovh:
         username: ''
         password: ''
-        encryption: ''
-        scheme: smtp
-      fallback:
-        host: mailhog.mailhog.svc.cluster.local
-        port: 1025
-        username: ''
-        password: ''
-        encryption: ''
+        tenantId: ''
+        tempUrlKey: ''
+        region: DE
+        objectStorageTimeout: 5
+        objectStorageConnectionTimeout: 5
+        containers:
+          avatars: edudip-next-test-from-local
+          avatarsParticipants: edudip-next-test-from-local
+          documents: edudip-next-test-from-local
+          landingpages: edudip-next-test-from-local
+          recordings: edudip-next-test-from-local
+          logos: edudip-next-test-from-local
+          moderatorBadgeLogos: edudip-next-test-from-local
 
-      fromAddress: noreply@edudip.com
-      fromName: edudip
-      systemMails:
-        senderName: edudip next
-        senderAddress: noreply@service.edudip.com
-        senderAddressFallback: noreply@edudip.com
-      queueSize: 25
+      mailing:
+        enabled: true
+        driver: smtp
+        main:
+          host: mailhog.mailhog.svc.cluster.local
+          port: 1025
+          username: ''
+          password: ''
+          encryption: ''
+          scheme: smtp
+        fallback:
+          host: mailhog.mailhog.svc.cluster.local
+          port: 1025
+          username: ''
+          password: ''
+          encryption: ''
+
+        fromAddress: noreply@edudip.com
+        fromName: edudip
+        systemMails:
+          senderName: edudip next
+          senderAddress: noreply@service.edudip.com
+          senderAddressFallback: noreply@edudip.com
+        queueSize: 25
 
   sentryRelay:
     enabled: false
