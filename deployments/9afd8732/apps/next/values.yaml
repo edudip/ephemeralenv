@@ -2,6 +2,10 @@ api:
   apiGlobals:
     imagePullSecrets:
       - name: harbor-pull
+  serviceAccount:
+    create: true
+    annotations: { }
+    name: ''
   api:
     resources:
       requests:
