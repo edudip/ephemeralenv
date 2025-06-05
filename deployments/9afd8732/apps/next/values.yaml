@@ -218,51 +218,27 @@ api:
 
   sentryRelay:
     enabled: false
-redis:  
   redis:
+    useHostnames: false
     enabled: true
-    metrics:
-      enabled: false
-    sentinel:
-          enabled: true
-          masterSet: mymaster
-          initialCheckTimeout: 5
-          quorum: 2
     auth:
-      sentinel: true
-      existingSecret: redis-password
-      existingSecretPasswordKey: auth
+      existingSecret: api-redis
     master:
-      disableCommands: [ ]
-      persistence:
-        enabled: true
-        accessModes:
-          - ReadWriteOnce
-        size: 8Gi
       resources:
         requests:
-          memory: 1Gi
-          cpu: 1
-      nodeSelector: { }
-      tolerations: [ ]
+          memory: 100Mi
+          cpu: 100m
     replica:
-      disableCommands: [ ]
-      persistence:
-        enabled: true
-        accessModes:
-          - ReadWriteOnce
-        size: 8Gi
       resources:
         requests:
-          memory: 1Gi
-          cpu: 1
-      nodeSelector: { }
-      tolerations: [ ]
-      autoscaling:
-        enabled: false
-      metrics:
-          enabled: true
-          serviceMonitor:
-            enabled: true
-          prometheusRule:
-            enabled: false
+          memory: 100Mi
+          cpu: 100m
+
+  redis-exporter:
+    enabled: true
+    redis:
+      address: api-redis
+      password:
+        secret: api-redis
+        key: auth
+      checkKeys: "db0=queues:*"
