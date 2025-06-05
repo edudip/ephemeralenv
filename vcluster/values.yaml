@@ -325,7 +325,7 @@ vcluster:
         # External defines that an external database should be used as the backend for the virtual cluster
         external:
           # Enabled defines if the database should be used.
-          enabled: false
+          enabled: true
           # DataSource is the kine dataSource to use for the database. This depends on the database format.
           # This is optional for the embedded database. Examples:
           # * mysql: mysql://username:password@tcp(hostname:3306)/k3s
