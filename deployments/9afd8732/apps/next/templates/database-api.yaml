@@ -57,7 +57,7 @@ spec:
   haproxy:
     enabled: true
     unsafeFlags:
-      pxcSize: true
+      proxySize: true
     size: 1
     image: percona/percona-xtradb-cluster-operator:1.14.0-haproxy
     serviceType: NodePort
