@@ -183,7 +183,7 @@ api:
           initialCheckTimeout: 5
           quorum: 2
     auth:
-      sentinel: false
+      sentinel: true
       existingSecret: redis-password
       existingSecretPasswordKey: auth
     master:
