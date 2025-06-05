@@ -235,7 +235,7 @@ api:
           cpu: 100m
 
   redis-exporter:
-    enabled: true
+    enabled: false
     redis:
       address: api-redis
       password:
