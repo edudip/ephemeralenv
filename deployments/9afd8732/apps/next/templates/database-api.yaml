@@ -59,13 +59,5 @@ spec:
     size: 2
     image: percona/percona-xtradb-cluster-operator:1.14.0-haproxy
     serviceType: NodePort
-    tolerations:
-      - effect: NoSchedule
-        key: edudip.com/node-type
-        value: db-spread
-    nodeSelector:
-      edudip.com/node-type: db-spread
-    affinity:
-      antiAffinityTopologyKey: "kubernetes.io/hostname"
     annotations:
       sidecar.istio.io/inject: "false"
