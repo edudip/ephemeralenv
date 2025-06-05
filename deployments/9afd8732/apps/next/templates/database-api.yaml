@@ -6,6 +6,8 @@ metadata:
     - delete-pxc-pods-in-order
     - delete-ssl
 #   - delete-pxc-pvc
+stringData:
+  password: "YourStrongPassword123!" # Replace with a strong password
 spec:
   crVersion: 1.16.0
   unsafeFlags:
@@ -49,6 +51,28 @@ spec:
         resources:
           requests:
             storage: 10G
+  # --- Initial User and Database Configuration ---
+  users:
+    - name: "edudip" # Username for the new user
+      # Databases this user will have access to.
+      # The operator should attempt to 'CREATE DATABASE IF NOT EXISTS initial_db'.
+      dbs:
+        - "edudip_next"
+      # Hosts from which this user can connect. '%' means any host.
+      hosts:
+        - "%"
+      # Reference to the Kubernetes Secret containing the password for this user.
+      passwordSecretRef:
+        name: initial-user-secret # Must match the metadata.name of the Secret above
+        key: password # Must match the key in stringData of the Secret
+      # Grants for the user on the specified databases.
+      # Example: ALL PRIVILEGES on 'initial_db'.*
+      # You can be more specific with grants like ['SELECT', 'INSERT', 'UPDATE']
+      grants:
+        - "ALL PRIVILEGES ON `edudip_next`.*"
+      # To grant privileges on all databases (less secure):
+      # - "*.*:ALL PRIVILEGES"
+
   pmm:
     enabled: false
     image: percona/pmm-client:2.44.0
