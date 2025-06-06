@@ -61,12 +61,9 @@ spec:
       hosts:
         - "%"
       grants:
-        - CREATE
-        - UPDATE
-        - SELECT
-        - DELETE
-        - INSERT
-        - DROP
+        - "ALL PRIVILEGES"
+        - ON '*.*'
+
       withGrantOption: true
       # Reference to the Kubernetes Secret containing the password for this user.
       passwordSecretRef:
