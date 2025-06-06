@@ -39,7 +39,7 @@ spec:
                 - next
   template:
     metadata:
-      name: 'vcluster-{{path.basename}}-{{app}}-apps'
+      name: '{{app}}-{{path.basename}}'
       labels:
         staging-components: '{{app}}'
     spec:
@@ -51,7 +51,7 @@ spec:
         plugin:
       destination:
         server: 'https://cluster-{{ path.basename }}.vcluster-{{ path.basename }}'
-        namespace: 'next-apps-{{ path.basename }}'
+        namespace: '{{ path.basename }}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
