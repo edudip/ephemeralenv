@@ -30,6 +30,7 @@ spec:
         cpu: "1"
     configuration: |
       [mysqld]
+      default_authentication_plugin=mysql_native_password
       max_connections=5000
       innodb_buffer_pool_size=512M
       innodb_log_file_size=1G
