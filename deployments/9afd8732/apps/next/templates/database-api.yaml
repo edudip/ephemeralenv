@@ -61,8 +61,7 @@ spec:
       hosts:
         - "%"
       grants:
-        - "ALL PRIVILEGES"
-        - ON '*.*'
+        - "ALL PRIVILEGES ON *.* WITH GRANT OPTION"
 
       withGrantOption: true
       # Reference to the Kubernetes Secret containing the password for this user.
