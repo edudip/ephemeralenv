@@ -65,6 +65,7 @@ spec:
         - SELECT
         - DELETE
         - INSERT
+        - DROP
       withGrantOption: true
       # Reference to the Kubernetes Secret containing the password for this user.
       passwordSecretRef:
