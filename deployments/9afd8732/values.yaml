@@ -7,12 +7,6 @@ vcluster:
       services:
         # Enabled defines if this option should be enabled.
         enabled: true
-        patch:
-          # Use a JSON patch to replace the name
-          op: replace
-          path: /metadata/name
-          # Define the new name template
-          value: "${vcluster}--${namespace}--${name}"
       # Endpoints defines if endpoints created within the virtual cluster should get synced to the host cluster.
       endpoints:
         # Enabled defines if this option should be enabled.

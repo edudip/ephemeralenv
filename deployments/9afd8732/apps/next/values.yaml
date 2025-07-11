@@ -1,8 +1,12 @@
 api:
+  fullnameOverride: ''
+  nameOverride: ''
   apiGlobals:
     imagePullSecrets:
       - name: harbor-pull
   api:
+    fullnameOverride: ''
+    nameOverride: ''
     resources:
       requests:
         cpu: 100m
