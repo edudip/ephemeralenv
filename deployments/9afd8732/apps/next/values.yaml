@@ -1,9 +1,12 @@
 fullnameOverride: ''
 api:
+  metrics:
+    serviceMonitor:
+      enabled: false
   apiGlobals:
     imagePullSecrets:
       - name: harbor-pull
-  apiKey:
+  api:
     resources:
       requests:
         cpu: 100m
