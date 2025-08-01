@@ -18,10 +18,6 @@ spec:
     schedule: "0 4 * * *"
   pxc:
     size: 1
-    livenessProbe:
-      disabled: true
-    readinessProbe:
-      disabled: true
     image: percona/percona-xtradb-cluster:8.0.39-30.1
     autoRecovery: true
     annotations:
@@ -35,8 +31,9 @@ spec:
         cpu: "1"
     configuration: |
       [mysqld]
+      wsrep_on=ON
       default_authentication_plugin=mysql_native_password
-      max_connections=5000
+      max_connections=500
       innodb_buffer_pool_size=512M
       innodb_log_file_size=1G
       innodb_write_io_threads = 16
