@@ -1,8 +1,8 @@
-fullnameOverride: ''
 api:
   metrics:
     serviceMonitor:
       enabled: false
+  fullnameOverride: ''
   apiGlobals:
     imagePullSecrets:
       - name: harbor-pull
