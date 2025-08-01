@@ -1,6 +1,6 @@
 dependencies:
 - name: api
   repository: oci://harbor.infra.edudip.dev/charts
-  version: 2.109.4-ephemeralenv
-digest: sha256:81e56f860ff4d3ebb9ca48e42413abeaa11cf1e3008e214c58fbfa631a7c32cf
-generated: "2025-08-01T10:14:29.235235+02:00"
+  version: 2.109.5-ephemeralenv
+digest: sha256:cc04e43452db556dd7a23052553c7f6b94ba58566efb6734a65959463c7b0e2d
+generated: "2025-08-01T10:34:46.091857+02:00"
