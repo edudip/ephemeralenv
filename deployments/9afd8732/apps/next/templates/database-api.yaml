@@ -1,10 +1,6 @@
 apiVersion: pxc.percona.com/v1
 kind: PerconaXtraDBCluster
 metadata:
-  annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: HookFailed
-    argocd.argoproj.io/sync-wave: "-6"
   name: api-mysql-cluster
   finalizers:
     - delete-pxc-pods-in-order
