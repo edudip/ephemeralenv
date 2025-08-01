@@ -1,0 +1,92 @@
+apiVersion: pxc.percona.com/v1
+kind: PerconaXtraDBCluster
+metadata:
+  name: api-mysql-cluster
+  finalizers:
+    - delete-pxc-pods-in-order
+    - delete-ssl
+#   - delete-pxc-pvc
+spec:
+  crVersion: 1.16.0
+  unsafeFlags:
+    pxcSize: true
+    proxySize: true
+  allowUnsafeConfigurations: false
+  upgradeOptions:
+    apply: disabled
+    schedule: "0 4 * * *"
+  pxc:
+    size: 1
+    image: percona/percona-xtradb-cluster:8.0.39-30.1
+    autoRecovery: true
+    annotations:
+      sidecar.istio.io/inject: "false"
+    resources:
+      requests:
+        memory: 128M
+        cpu: "500m"
+      limits:
+        memory: 2G
+        cpu: "1"
+    configuration: |
+      [mysqld]
+      max_connections=5000
+      innodb_buffer_pool_size=512M
+      innodb_log_file_size=1G
+      innodb_write_io_threads = 16
+      innodb_log_buffer_size=256M
+      log_error_verbosity=2
+      wsrep_min_log_verbosity=2
+      wsrep_debug=CLIENT
+      wsrep_provider_options="gcache.size=1G; gcache.recover=yes"
+      [sst]
+      xbstream-opts=--decompress
+      [xtrabackup]
+      compress=lz4
+    volumeSpec:
+      persistentVolumeClaim:
+        storageClassName: local-path
+        resources:
+          requests:
+            storage: 10G
+  # --- Initial User and Database Configuration ---
+  users:
+    - name: "edudip" # Username for the new user
+      # Databases this user will have access to.
+      # The operator should attempt to 'CREATE DATABASE IF NOT EXISTS initial_db'.
+      dbs:
+        - "edudip_next"
+      # Hosts from which this user can connect. '%' means any host.
+      hosts:
+        - "%"
+      grants:
+        - CREATE
+        - UPDATE
+        - SELECT
+        - DELETE
+        - INSERT
+        - DROP
+      withGrantOption: true
+      # Reference to the Kubernetes Secret containing the password for this user.
+      passwordSecretRef:
+        name: api-secrets-x-next-x-cluster-9afd8732 # Must match the metadata.name of the Secret above
+        key: db.mysql.password # Must match the key in stringData of the Secret
+      # Grants for the user on the specified databases.
+      # Example: ALL PRIVILEGES on 'initial_db'.*
+      # You can be more specific with grants like ['SELECT', 'INSERT', 'UPDATE']
+
+  pmm:
+    enabled: false
+    image: percona/pmm-client:2.44.0
+    serverHost: monitoring-service.pxc-operator.svc.cluster.local:443
+    resources:
+      requests:
+        memory: 150M
+        cpu: 300m
+  haproxy:
+    enabled: true
+    size: 1
+    image: percona/percona-xtradb-cluster-operator:1.14.0-haproxy
+    serviceType: NodePort
+    annotations:
+      sidecar.istio.io/inject: "false"
