@@ -7,7 +7,7 @@ appVersion: "1.16.0"
 
 dependencies:
   - name: api
-    version: "2.101.1-dev"
+    version: "2.109.4-ephermeralenv"
     repository: oci://harbor.infra.edudip.dev/charts
   # - name: sharedobjects
   #   version: "2.18.0"
