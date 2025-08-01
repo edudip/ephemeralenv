@@ -85,7 +85,7 @@ spec:
       withGrantOption: true
       # Reference to the Kubernetes Secret containing the password for this user.
       passwordSecretRef:
-        name: api-staging-secrets-x-next-x-cluster-9afd8732 # Must match the metadata.name of the Secret above
+        name: api-secrets # Must match the metadata.name of the Secret above
         key: db.mysql.password # Must match the key in stringData of the Secret
       # Grants for the user on the specified databases.
       # Example: ALL PRIVILEGES on 'initial_db'.*
