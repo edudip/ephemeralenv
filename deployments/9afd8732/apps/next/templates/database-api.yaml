@@ -3,6 +3,7 @@ kind: PerconaXtraDBCluster
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-6"
+    argocd.argoproj.io/ignore-healthcheck: "true"
   name: api-mysql-cluster
   finalizers:
     - delete-pxc-pods-in-order
@@ -17,8 +18,7 @@ spec:
     apply: disabled
     schedule: "0 4 * * *"
   pxc:
-    # we need 3 nodes for pxc, otherwise healthchecks will never complete(blocks deployment)
-    size: 3
+    size: 1
     image: percona/percona-xtradb-cluster:8.0.39-30.1
     autoRecovery: true
     annotations:
