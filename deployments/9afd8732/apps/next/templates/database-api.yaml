@@ -13,7 +13,7 @@ spec:
   unsafeFlags:
     pxcSize: true
     proxySize: true
-  allowUnsafeConfigurations: false
+  allowUnsafeConfigurations: true
   upgradeOptions:
     apply: disabled
     schedule: "0 4 * * *"
