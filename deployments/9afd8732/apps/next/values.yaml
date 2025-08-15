@@ -2,7 +2,7 @@ api:
   metrics:
     serviceMonitor:
       enabled: false
-  fullnameOverride: 'next-9afd8732-api'
+  fullnameOverride: 'next-9afd8732'
   apiGlobals:
     imagePullSecrets:
       - name: harbor-pull
