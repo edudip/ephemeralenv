@@ -52,46 +52,46 @@ spec:
           requests:
             storage: 10G
   # --- Initial User and Database Configuration ---
-  #   users:
-  #     - name: "edudip" # Username for the new user
-  #       # Databases this user will have access to.
-  #       # The operator should attempt to 'CREATE DATABASE IF NOT EXISTS initial_db'.
-  #       dbs:
-  #         - "edudip_next"
-  #       # Hosts from which this user can connect. '%' means any host.
-  #       hosts:
-  #         - "%"
-  #       grants:
-  #         - "SELECT"
-  #         - "INSERT"
-  #         - "UPDATE"
-  #         - "DELETE"
-  #         - "CREATE"
-  #         - "DROP"
-  #         - "REFERENCES"
-  #         - "INDEX"
-  #         - "ALTER"
-  #         - "CREATE TEMPORARY TABLES"
-  #         - "LOCK TABLES"
-  #         - "EXECUTE"
-  #         - "CREATE VIEW"
-  #         - "SHOW VIEW"
-  #         - "CREATE ROUTINE"
-  #         - "ALTER ROUTINE"
-  #         - "EVENT"
-  #         - "TRIGGER"
+  users:
+    - name: "edudip" # Username for the new user
+      # Databases this user will have access to.
+      # The operator should attempt to 'CREATE DATABASE IF NOT EXISTS initial_db'.
+      dbs:
+        - "edudip_next"
+      # Hosts from which this user can connect. '%' means any host.
+      hosts:
+        - "%"
+      grants:
+        - "SELECT"
+        - "INSERT"
+        - "UPDATE"
+        - "DELETE"
+        - "CREATE"
+        - "DROP"
+        - "REFERENCES"
+        - "INDEX"
+        - "ALTER"
+        - "CREATE TEMPORARY TABLES"
+        - "LOCK TABLES"
+        - "EXECUTE"
+        - "CREATE VIEW"
+        - "SHOW VIEW"
+        - "CREATE ROUTINE"
+        - "ALTER ROUTINE"
+        - "EVENT"
+        - "TRIGGER"
 
-  #       withGrantOption: true
-  #       # Reference to the Kubernetes Secret containing the password for this user.
-  #       passwordSecretRef:
-  #         name: api-secrets # Must match the metadata.name of the Secret above
-  #         key: db.mysql.password # Must match the key in stringData of the Secret
-  #       # Grants for the user on the specified databases.
-  #       # Example: ALL PRIVILEGES on 'initial_db'.*
-  #       # You can be more specific with grants like ['SELECT', 'INSERT', 'UPDATE']
+      withGrantOption: true
+      # Reference to the Kubernetes Secret containing the password for this user.
+      passwordSecretRef:
+        name: api-secrets # Must match the metadata.name of the Secret above
+        key: db.mysql.password # Must match the key in stringData of the Secret
+      # Grants for the user on the specified databases.
+      # Example: ALL PRIVILEGES on 'initial_db'.*
+      # You can be more specific with grants like ['SELECT', 'INSERT', 'UPDATE']
 
   pmm:
-    enabled: true
+    enabled: false
     image: percona/pmm-client:2.44.0
     serverHost: monitoring-service.pxc-operator.svc.cluster.local:443
     resources:
