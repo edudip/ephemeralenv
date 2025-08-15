@@ -2,7 +2,7 @@ api:
   metrics:
     serviceMonitor:
       enabled: false
-  fullnameOverride: 'api-staging'
+  fullnameOverride: ''
   apiGlobals:
     imagePullSecrets:
       - name: harbor-pull
