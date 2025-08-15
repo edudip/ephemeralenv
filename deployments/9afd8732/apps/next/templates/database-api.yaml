@@ -91,7 +91,7 @@ spec:
   #       # You can be more specific with grants like ['SELECT', 'INSERT', 'UPDATE']
 
   pmm:
-    enabled: false
+    enabled: true
     image: percona/pmm-client:2.44.0
     serverHost: monitoring-service.pxc-operator.svc.cluster.local:443
     resources:
